@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Random Numbers Generator</title>
+    <style>
+            body {
+              background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+              background-size: 400% 400%;
+              animation: gradient 15s ease infinite;
+            }
+
+            @keyframes gradient {
+              0% {
+                background-position: 0% 50%;
+              }
+              50% {
+                background-position: 100% 50%;
+              }
+              100% {
+                background-position: 0% 50%;
+              }
+            }
+
+            .content {
+              text-align: center;
+              font-size: 23px;
+            }
+            /* .raz {
+              width: 2em;
+              height: 1.em;
+              text-align: center;
+              font-size: 25px;
+            } */
+            .raz {
+              width: 2em;
+              height: 1em;
+              text-align: center;
+              font-size: 25px;
+              border: 2px solid #f5b7dc; /* Add a green border */
+              border-radius: 5px; /* Add rounded corners */
+              padding: 5px; /* Add some padding */
+              background-color: #94faf9; /* Add a light gray background */
+              box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+            }
+
+            .numran {
+              width: 90%;
+              margin: 0 auto;
+              font-size: 360px;
+              color: #e5e5e5;
+              height: 400px;
+              /* font-family: "Roboto Mono", monospace; */
+              font-family: "Fjalla One", sans-serif;
+              text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.9); /* Add text shadow */
+              transition: transform 0.5s ease-in-out; /* Add transition for animation */
+            }
+
+            .numran:hover {
+              animation: vibrate 0.5s ease-in-out infinite; /* Add vibrate animation on hover */
+              transform: scale(1.1); /* Increase the size slightly on hover */
+            }
+
+            @keyframes vibrate {
+              0% {
+                transform: translate(0, 0);
+              }
+              25% {
+                transform: translate(-2px, 2px);
+              }
+              50% {
+                transform: translate(-2px, -2px);
+              }
+              75% {
+                transform: translate(-2px, 2px);
+              }
+              100% {
+                transform: translate(0, 0);
+              }
+            }
+
+            .numend {
+              font-size: 20px;
+            }
+            /* .btn {
+              font-size: 20px;
+          } */
+
+            .btn {
+              background-color: #4caf50; /* Green */
+              border: none;
+              color: white;
+              padding: 10px 20px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 16px;
+              margin: 10px;
+              cursor: pointer;
+              border-radius: 5px;
+              cursor: pointer;
+              background-image: linear-gradient(to right, #ff4b1f, #1fddff);
+              transition: background-color 0.5s ease;
+            }
+            .btn:hover {
+              /* background-color: #3e8e41; */
+              background-color: blue;
+              transform: translateY(-2px);
+              box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+            }
+            .btn:active {
+              background-color: #e5e5e5;
+              color: black;
+              transition: background-color 0s ease;
+            }
+
+            .btn2 {
+              background-color: #4caf50; /* Green */
+              border: none;
+              color: white;
+              padding: 10px 20px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 16px;
+              margin: 10px;
+              cursor: pointer;
+              border-radius: 5px;
+              cursor: pointer;
+              background-image: linear-gradient(to right, #15b6a9, #c4de34);
+              transition: background-color 0.5s ease;
+            }
+            .btn2:hover {
+              /* background-color: #3e8e41; */
+              background-color: blue;
+              transform: translateY(-2px);
+              box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+            }
+            .btn2:active {
+              background-color: #e5e5e5;
+              color: black;
+              transition: background-color 0s ease;
+            }
+
+            .numout {
+              width: 90%;
+              height: 200px;
+              font-size: 25px;
+              text-align: center;
+              margin: 0 auto;
+              background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+              display: flex; /* Use flexbox for alignment */
+              justify-content: center; /* Center horizontally */
+              align-items: center; /* Center vertically */
+              padding: 10px; /* Add some padding */
+              border-radius: 5px; /* Add rounded corners */
+              color: white; /* White text for better contrast */
+              box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add a sub  tle shadow */
+             }
+            
+            .raz::-webkit-inner-spin-button {
+              display: none;
+            }
+
+            .btn3 {
+              background-color: transparent; /* Make the background transparent */
+              border: none; /* Remove the border */
+              color: #000000; /* Set the text color to black */
+              font-size: 30px; /* Set the font size */
+              cursor: pointer; /* Change the cursor to a pointer on hover */
+              font-weight: bold; /* Make the text bold */
+            }
+            .btn3:hover {
+              color: #000a43; /* Change the text color on hover */
+              transform: scale(1.4);
+            }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      Specify a range<br /><br />
+      <button
+        class="btn3"
+        type="button"
+        onclick="this.nextElementSibling.stepDown()"
+      >
+        -
+      </button>
+      <input type="number" min="1" max="100" value="1" class="raz" id="min" />
+      <button
+        class="btn3"
+        type="button"
+        onclick="this.previousElementSibling.stepUp()"
+      >
+        +
+      </button>
+      to
+      <button
+        class="btn3"
+        type="button"
+        onclick="this.nextElementSibling.stepDown()"
+      >
+        -
+      </button>
+      <input type="number" min="1" max="100" value="1" class="raz" id="max" />
+      <button
+        class="btn3"
+        type="button"
+        onclick="this.previousElementSibling.stepUp()"
+      >
+        +
+      </button>
+      <br />
+      <div class="numran" id="numran"></div>
+      <button type="button" class="btn" onclick="RangeNum()">
+        Random Number
+      </button>
+      <button type="button" class="btn2" onclick="ResetNum()">Reset</button>
+      <br /><br />
+      <div class="numend" id="numend">Numbers remaining: 1</div>
+      <br />Excluded numbers
+      <br />
+      <textarea readonly class="numout" id="numout"></textarea>
+      <script type="text/javascript">
+        //Field values at page load
+        var vmin = parseInt(localStorage.getItem("vmin") || 1, 10);
+        var vmax = parseInt(localStorage.getItem("vmax") || 1, 10);
+        var arg = JSON.parse(localStorage.getItem("arg") || []);
+        var argout = JSON.parse(localStorage.getItem("argout") || []);
+        var numran = localStorage.getItem("numran") || "";
+        var numend =
+          localStorage.getItem("numend") ||
+          "Numbers remaining: " + (vmax - vmin + 1);
+
+        //Array with numbers
+        //Array with exclusions
+
+        function RangeNum() {
+          //Check current state of values
+          var valmin = parseInt(document.getElementById("min").value, 10);
+          var valmax = parseInt(document.getElementById("max").value, 10);
+          //Check for negative numbers
+          if (valmin < 0 || valmax < 0) {
+            return alert("Number should not be negative");
+          }
+          //Check if start and end numbers are inconsistent
+          if (valmin > valmax) {
+            return alert("End number is less than start number");
+          }
+          //Check if the specified numbers are within the range
+          if (!Number.isInteger(valmin) || !Number.isInteger(valmax)) {
+            return alert(
+              "Range should be specified with positive integers only"
+            );
+          }
+          //If minimum or maximum number changed
+          if (vmin != valmin || vmax != valmax) {
+            //If changed
+            //Replace values
+            vmin = valmin;
+            vmax = valmax;
+            //Reset array with excluded numbers
+            argout = [];
+            //Array
+            arg = Array.from(
+              new Array(+vmax - vmin + 1),
+              (val, index) => index + vmin
+            );
+            //Random number
+            var rndnum = Math.floor(Math.random() * arg.length);
+            //Display number
+            document.getElementById("numran").innerHTML = arg[rndnum];
+            //Copy number to exclusion list
+            argout.push(arg[rndnum]);
+            //Remove it from array
+            arg.splice(rndnum, 1);
+          } else {
+            //Specified numbers not changed
+            if (arg.length == 0) {
+              //If array is empty
+              if (argout.length == 0) {
+                //If exclusion array is empty
+                //Array
+                arg = Array.from(
+                  new Array(+vmax - vmin + 1),
+                  (val, index) => index + vmin
+                );
+                //Random number
+                var rndnum = Math.floor(Math.random() * arg.length);
+                //Display number
+                document.getElementById("numran").innerHTML = arg[rndnum];
+                //Copy number to exclusion list
+                argout.push(arg[rndnum]);
+                //Remove it from array
+                arg.splice(rndnum, 1);
+              } else {
+                //Exclusions exist
+                alert("No more numbers left");
+              }
+            } else {
+              //Random number
+              var rndnum = Math.floor(Math.random() * arg.length);
+              //Display number
+              document.getElementById("numran").innerHTML = arg[rndnum];
+              //Copy number to exclusion list
+              argout.push(arg[rndnum]);
+              //Remove it from array
+              arg.splice(rndnum, 1);
+            }
+          }
+          document.getElementById("numout").value = argout;
+          //Display count of remaining numbers
+          document.getElementById("numend").innerHTML =
+            "Numbers remaining: " + arg.length;
+
+          // Animation and sound effects
+          var numran = document.getElementById("numran");
+          numran.style.transform = "scale(1.2)"; // Make it bigger
+          setTimeout(function () {
+            numran.style.transform = "scale(1)"; // Reset to normal size
+          }, 500); // After 0.5 seconds
+
+          var audio = new Audio("boing.mp3"); // Replace with your sound file path
+          audio.play();
+
+          // Save data to localStorage
+          localStorage.setItem("vmin", vmin);
+          localStorage.setItem("vmax", vmax);
+          localStorage.setItem("arg", JSON.stringify(arg));
+          localStorage.setItem("argout", JSON.stringify(argout));
+          localStorage.setItem(
+            "numran",
+            document.getElementById("numran").innerHTML
+          );
+          localStorage.setItem(
+            "numend",
+            document.getElementById("numend").innerHTML
+          );
+        }
+
+        //Reset data
+        function ResetNum() {
+          //Reset minimum and maximum values
+          document.getElementById("min").value = 1;
+          document.getElementById("max").value = 1;
+          //Clear arrays
+          arg = [];
+          argout = [];
+          //Clear number
+          document.getElementById("numran").innerHTML = "";
+          //Clear exclusion field
+          document.getElementById("numout").value = "";
+          //Clear remaining numbers field
+          document.getElementById("numend").innerHTML =
+            "Numbers remaining: " + document.getElementById("max").value;
+
+          // Clear localStorage
+          localStorage.removeItem("vmin");
+          localStorage.removeItem("vmax");
+          localStorage.removeItem("arg");
+          localStorage.removeItem("argout");
+          localStorage.removeItem("numran");
+          localStorage.removeItem("numend");
+        }
+
+        // Load data from localStorage on page load
+        document.getElementById("min").value = vmin;
+        document.getElementById("max").value = vmax;
+        document.getElementById("numran").innerHTML = numran;
+        document.getElementById("numend").innerHTML = numend;
+        document.getElementById("numout").value = argout.join("\n");
+      </script>
+    </div>
+  </body>
+</html>
